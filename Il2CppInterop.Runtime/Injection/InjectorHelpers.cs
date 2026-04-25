@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -115,7 +116,16 @@ namespace Il2CppInterop.Runtime.Injection
 
         internal static bool TryGetIl2CppExport(string name, out IntPtr address)
         {
-            return NativeLibrary.TryGetExport(Il2CppHandle, name, out address);
+            try
+            {
+                address = IL2CPP.GetExport(name);
+            }
+            catch
+            {
+                address = IntPtr.Zero;
+            }
+            return address != IntPtr.Zero;
+            //return NativeLibrary.TryGetExport(Il2CppHandle, name, out address);
         }
 
         internal static IntPtr GetIl2CppMethodPointer(MethodBase proxyMethod)

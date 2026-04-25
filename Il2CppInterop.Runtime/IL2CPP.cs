@@ -390,7 +390,7 @@ public static unsafe class IL2CPP
         return _gameAssemblyModule;
     }
 
-    private static IntPtr GetExport(string exportCleanName)
+    internal static IntPtr GetExport(string exportCleanName)
     {
         string exportName = ExportApi.GetExportName(exportCleanName);
         if (string.IsNullOrEmpty(exportName)) return IntPtr.Zero;
