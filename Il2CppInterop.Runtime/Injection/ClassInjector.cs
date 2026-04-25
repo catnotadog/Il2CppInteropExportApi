@@ -64,6 +64,7 @@ public class RegisterTypeOptions
     public Il2CppInterfaceCollection? Interfaces { get; init; } = null;
 }
 
+// todo: fix this
 public static unsafe partial class ClassInjector
 {
     /// <summary> type.FullName </summary>
